@@ -1,0 +1,12 @@
+name: DESeq2-App
+title: DESeq2-App
+username: andyring
+account: andyring
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13973024
+bundleId: 9795178
+url: https://andyring.shinyapps.io/DESeq2-App/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
