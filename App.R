@@ -103,7 +103,7 @@ ui <- fluidPage(
       br(),
       # Footer information
       tags$p("Created by Andy Ring"),
-      tags$p("Version 1.0.0 | February 13th, 2025")
+      tags$p("Version 1.0.1 | February 17th, 2025")
     ),
     
     # Main Panel: Contains the output plots and download buttons
@@ -154,7 +154,7 @@ ui <- fluidPage(
                    card_header("Gene Expression"),
                    plotOutput("gene_barplot"),
                    fluidRow(
-                     column(6, actionButton("download_gene", "Download Gene Expression Plot"))
+                     column(6, downloadButton("download_gene", "Download Gene Expression Plot"))
                    )
                  ),
                  br(), br(),
@@ -385,7 +385,7 @@ server <- function(input, output, session) {
   
   # Download handler for the gene expression plot
   output$download_gene <- downloadHandler(
-    filename = function() { "gene_expression_highres.png" },
+    filename = function() { "gene_expression_plot.png" },
     content = function(file) {
       req(gene_expr())
       df <- gene_expr()$df
@@ -400,7 +400,7 @@ server <- function(input, output, session) {
         theme_light() +
         labs(title = paste("Gene Expression for", input$gene_select),
              y = "Normalized Count", x = "Group")
-      ggsave(filename = file, plot = p, width = 12, height = 18, dpi = 800)
+      ggsave(filename = file, plot = p, device = "png", width = 12, height = 18, dpi = 800)
     }
   )
   
