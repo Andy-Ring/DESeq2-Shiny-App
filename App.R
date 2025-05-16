@@ -12,6 +12,7 @@ library(EnhancedVolcano)
 library(org.Hs.eg.db)
 library(dplyr)
 library(rlang)
+library(rhdf5)
 
 # Load utility functions from an external file
 source("utils.R")
@@ -41,8 +42,8 @@ ui <- fluidPage(
                  # Conditional panel: file input for Kallisto files
                  conditionalPanel(
                    condition = "input.data_type == 'kallisto'",
-                   fileInput("kallisto_files", "Upload Kallisto Abundance Files", 
-                             multiple = TRUE, accept = ".tsv")
+                   fileInput("kallisto_files", "Upload Kallisto Abundance Files (.h5)", 
+                             multiple = TRUE, accept = ".h5")
                  ),
                  # Conditional panel: file input for CSV count matrix
                  conditionalPanel(
@@ -103,7 +104,7 @@ ui <- fluidPage(
       br(),
       # Footer information
       tags$p("Created by Andy Ring"),
-      tags$p("Version 1.0.1 | February 17th, 2025")
+      tags$p("Version 1.0.2 | May 16th, 2025")
     ),
     
     # Main Panel: Contains the output plots and download buttons
